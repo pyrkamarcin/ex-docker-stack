@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  my-whoami:
+    image: nginx:latest
+    ports: 
+      - "80:80"
+    deploy:
+      replicas: 10
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
